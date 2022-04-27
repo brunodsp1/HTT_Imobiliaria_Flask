@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+
+</head>
+
+<body>
+  <br><br><br>
+  <div class="principal" style="color: white; ">
+    <div class="titulo_principal">Imobiliária</h1>
+    </div>
+    <div class="pg_principal">
+      <br><br>
+      <div class="icones">
+        <div class="icone_container">
+          <a class="icone_container" href="{{ url_for('show_all_inquilinos') }}">
+            <img class="img_front" src="/static/pessoa.png">
+            <h3>Lista de Inquilinos</h3>
+          </a>
+        </div>
+        <div class="icone_container">
+          <a class="icone_container" href="{{ url_for('show_all_proprietarios') }}">
+            <img class="img_front" src="/static/pessoa.png">
+            <h3>Lista de Proprietários</h3>
+          </a>
+        </div>
+        <div class="icone_container">
+          <a class="icone_container" href="{{ url_for('show_all_imoveis') }}">
+            <img class="img_front" src="/static/imovel.png">
+            <h3>Lista de Imóveis</h3>
+          </a>
+        </div>
+      </div>
+      <div class="icones">
+        <div class="icone_container">
+          <a class="icone_container" href="{{ url_for('show_all_contratos') }}">
+            <img class="img_front" src="/static/contrato.png">
+            <h3>Lista de Contratos</h3>
+          </a>
+        </div>
+        <div class="icone_container">
+          <a class="icone_container" href="{{ url_for('show_all_alugueis') }}">
+            <img class="img_front" src="/static/contrato.png">
+            <h3>Lista de Aluguéis</h3>
+          </a>
+        </div>
+        <div class="icone_container">
+          <a class="icone_container" href="{{ url_for('show_all_corretores') }}">
+            <img class="img_front" src="/static/pessoa.png">
+            <h3>Lista de Corretores</h3>
+          </a>
+        </div>
+      </div>
+      <br /><br />
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+  <div class="principal">
+    <br />
+    <div class="secundaria">
+      <div class="cabecalho">
+        <div class="titulo">Cadastro de Proprietário</div>
+      </div>
+      <br>
+    </div>
+    <div class="terciaria">
+      <br><br>
+      <div class="message"> {%- for category, message in get_flashed_messages(with_categories = true) %}</div>
+      <div class="alert alert-danger">{{ message }}</div>
+      {%- endfor %}
+      <div class="form">
+        <form action="{{ request.path }}" method="post">
+          <label>Nome: </label><input type="text" name="nome" placeholder="Nome" /><br />
+          <label>Sobrenome: </label><input type="text" name="sobrenome" placeholder="Sobrenome" /><br />
+          <label>Endereço: </label><input type="text" name="endereco" placeholder="Endereço" /><br />
+          <label>CPF: </label><input type="text" name="cpf" placeholder="CPF" /><br />
+          <label>Data de Nascimento: </label><input type="date" name="data_nascimento"
+            placeholder="Data de Nascimento" /><br />
+          <label>Telefone: </label><input type="text" name="telefone" placeholder="Telefone" /><br />
+          <input class="inserir" type="submit" value="Inserir" />
+        </form><br><br>
+      </div>
+    </div>
+  </div>
+  <div class="pg_inicial">
+    <button class="bt_pg_inicial">
+      <a href="{{ url_for('show_all_proprietarios') }}"><img class="img_btn" src="/static/return_pq.png"> Voltar
+        para Lista</a>
+    </button></div>
+</body>
+
+</html>

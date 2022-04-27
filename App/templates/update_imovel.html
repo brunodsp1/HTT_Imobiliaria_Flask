@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+    <div class="principal">
+        <br />
+        <div class="secundaria">
+            <div class="cabecalho">
+                <div class="titulo">Cadastro de Imóveis</div>
+            </div>
+            <br>
+        </div>
+        <div class="terciaria">
+            <br><br>
+            <div class="message"> {%- for category, message in get_flashed_messages(with_categories = true) %}</div>
+            <div class="alert alert-danger">{{ message }}</div>
+            {%- endfor %}
+            <div class="form">
+                <form action="" method="POST">
+                    <input type="hidden" name="idimovel" value="{{imovel.id}}" /><br />
+
+                    <label>Proprietário: </label>
+                    <select name="id_proprietario" width="300px">
+                        {% for proprietario in proprietario %}
+                        {% if imovel.id_proprietario == proprietario.id %}
+                        <option value="{{ proprietario.id }}" selected>
+                            {{ proprietario.nome }} {{ proprietario.sobrenome }}</option>
+                        {% else %}
+                        <option value="{{ proprietario.id }}">
+                            {{ proprietario.nome }} {{ proprietario.sobrenome }}
+                        </option>
+                        {% endif %}
+                        {% endfor %}
+                    </select><br />
+                    <label>Tipo de imóvel: </label><input type="text" name="tipo_imovel"
+                        value="{{imovel.tipo_imovel}}" /><br />
+                    <label>Endereço: </label><input type="text" name="endereco" value="{{imovel.endereco}}" /><br />
+                    <label>Tem garagem própria?: </label><input type="text" name="garagem_propria"
+                        value="{{imovel.garagem_propria}}" /><br />
+                    <label>Metragem: </label><input type="text" name="metragem" value="{{imovel.metragem}}" /><br />
+                    <label>Número de salas: </label><input type="text" name="num_salas"
+                        value="{{imovel.num_salas}}" /><br />
+                    <label>Número de banheiros: </label><input type="text" name="num_banheiros"
+                        value="{{imovel.num_banheiros}}" /><br />
+                    <label>Numero de vagas: </label><input type="text" name="num_vagas"
+                        value="{{imovel.num_vagas}}" /><br />
+                    <label>Número de elevadores: </label><input type="text" name="num_elevadores"
+                        value="{{imovel.num_elevadores}}" /><br />
+                    <label>Tem escada de incêndio?: </label><input type="text" name="escada_incendio"
+                        value="{{imovel.escada_incendio}}" /><br />
+                    <label>Tipo de recepção: </label><input type="text" name="tipo_recepcao"
+                        value="{{imovel.tipo_recepcao}}" /><br />
+                    <input class="inserir" type="submit" value="Atualizar" />
+                </form><br><br>
+            </div>
+        </div>
+    </div>
+    <div class="pg_inicial">
+        <button class="bt_pg_inicial">
+            <a href="{{ url_for('show_all_imoveis') }}"><img class="img_btn" src="/static/return_pq.png"> Voltar
+                para Lista</a>
+        </button></div>
+</body>
+
+</html>

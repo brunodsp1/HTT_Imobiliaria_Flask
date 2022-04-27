@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+  <div class="principal">
+    <br />
+    <div class="secundaria">
+      <div class="cabecalho">
+        <div class="titulo">Cadastro de Imovéis</div>
+      </div>
+      <br>
+    </div>
+    <div class="terciaria">
+      <br><br>
+      <div class="message"> {%- for category, message in get_flashed_messages(with_categories = true) %}</div>
+      <div class="alert alert-danger">{{ message }}</div>
+      {%- endfor %}
+      <div class="form">
+        <form action="{{ request.path }}" method="post">
+          <label>Proprietário: </label>
+          <select name="id_proprietario" width="300px">
+            <option value="">Selecione o proprietário</option>
+            {% for proprietario in proprietario %}
+            <option value="{{ proprietario.id }}">
+              {{ proprietario.nome }} {{ proprietario.sobrenome }}
+            </option>
+            {% endfor %}
+          </select><br />
+          <label>Tipo de Imóvel: </label><input type="text" name="tipo_imovel" placeholder="Tipo de Imóvel" /><br />
+          <label>Endereço: </label><input type="text" name="endereco" placeholder="Endereço" /><br />
+          <label>Tem garagem própria?: </label><input type="text" name="garagem_propria"
+            placeholder="Tem garagem própria?" /><br />
+          <label>Metragem: </label><input type="text" name="metragem" placeholder="Metragem" /><br />
+          <label>Número de salas: </label><input type="text" name="num_salas" placeholder="Número de salas" /><br />
+          <label>Número de banheiros: </label><input type="text" name="num_banheiros"
+            placeholder="Número de banheiros" /><br />
+          <label>Número de vagas: </label><input type="text" name="num_vagas" placeholder="Número de vagas" /><br />
+          <label>Número de elevadores: </label><input type="text" name="num_elevadores"
+            placeholder="Número de elevadores" /><br />
+          <label>Tem escada de incêndio?: </label><input type="text" name="escada_incendio"
+            placeholder="Tem escada de incêndio?" /><br />
+          <label>Tipo de Recepção: </label><input type="text" name="tipo_recepcao"
+            placeholder="Tipo de Recepção" /><br />
+          <input class="inserir" type="submit" value="Inserir" />
+        </form><br><br>
+      </div>
+    </div>
+  </div>
+  <div class="pg_inicial">
+    <button class="bt_pg_inicial">
+      <a href="{{ url_for('show_all_imoveis') }}"><img class="img_btn" src="/static/return_pq.png"> Voltar
+        para Lista</a>
+    </button></div>
+</body>
+
+</html>

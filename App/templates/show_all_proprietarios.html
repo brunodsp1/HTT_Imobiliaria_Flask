@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+  <div class="principal">
+    <br />
+    <div class="secundaria">
+      <div class="cabecalho">
+        <div class="titulo">Proprietários </div>
+        <div class="botao"><button><a class="texto_cadastrar" href="{{ url_for('new_proprietario') }}"> <img class="img_btn"
+                src="/static/cadastrar.png">Cadastrar Novo Proprietário
+            </a></button></div>
+      </div>
+      <br>
+    </div>
+    <div class="terciaria">
+
+      <br><br>
+      <div class="message">{%- for message in get_flashed_messages() %} {{ message }} {%- endfor %}</div>
+
+      <table class="center">
+        <thead>
+          <tr>
+            <th class="hide"></th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Endereço</th>
+            <th>CPF</th>
+            <th>Data Nascimento</th>
+            <th>Telefone</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for proprietario in proprietario %}
+          <tr>
+            <td class="hide">
+              <input type="hidden" name="id" enabled="false" value="{{ proprietario.id }}" />
+            </td>
+            <td>{{ proprietario.nome }}</td>
+            <td>{{ proprietario.sobrenome }}</td>
+            <td>{{ proprietario.endereco }}</td>
+            <td>{{ proprietario.cpf }}</td>
+            <td>{{ proprietario.data_nascimento }}</td>
+            <td>{{ proprietario.telefone }}</td>
+            <th>
+              <button class="btn_tabela"><a href="{{ url_for('update_proprietario', id=proprietario.id) }}"><img
+                    class="img_btn" src="/static/editar.png"></a></button>
+            </th>
+            <th>
+              <button class="btn_tabela"><a href="{{ url_for('proprietario_delete', id=proprietario.id) }}"><img
+                    class="img_btn" src="/static/excluir.png"></a></button>
+            </th>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br /><br />
+    </div>
+    <div class="pg_inicial">
+      <button class="bt_pg_inicial"><a href="{{ url_for('index') }}"><img class="img_btn" src="/static/home_pq.png">
+          Voltar para a página Inicial</a></button>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+    <div class="principal">
+        <br />
+        <div class="secundaria">
+            <div class="cabecalho">
+                <div class="titulo">Cadastro de Contrato</div>
+            </div>
+            <br>
+        </div>
+        <div class="terciaria">
+            <br><br>
+            <div class="message"> {%- for category, message in get_flashed_messages(with_categories = true) %}</div>
+            <div class="alert alert-danger">{{ message }}</div>
+            {%- endfor %}
+            <div class="form">
+                <form action="" method="POST">
+                    <input type="hidden" name="idcontrato" value="{{contrato.id}}" /><br />
+                    <label>Tipo de Contrato: </label><input type="text" name="tipo_contrato"
+                        placeholder="Tipo de Contrato" value="{{contrato.tipo_contrato}}" /><br />
+                    <label>Fiador: </label><input type="text" name="fiador" placeholder="Fiador"
+                        value="{{contrato.fiador}}" /><br />
+                    <label>Data de Início: </label><input type="date" name="data_inicio" placeholder="Data de Início"
+                        value="{{contrato.data_inicio}}" /><br />
+                    <label>Data de Fim: </label><input type="date" name="data_fim" placeholder="Data de Fim"
+                        value="{{contrato.data_fim}}" /><br />
+                    <input class="inserir" type="submit" value="Atualizar" />
+                </form><br><br>
+            </div>
+        </div>
+    </div>
+    <div class="pg_inicial">
+        <button class="bt_pg_inicial">
+            <a href="{{ url_for('show_all_contratos') }}"><img class="img_btn" src="/static/return_pq.png"> Voltar
+                para Lista</a>
+        </button></div>
+</body>
+
+</html>

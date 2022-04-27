@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+  <div class="principal">
+    <br />
+    <div class="secundaria">
+      <div class="cabecalho">
+        <div class="titulo">Aluguéis </div>
+        <div class="botao"><button><a class="texto_cadastrar" href="{{ url_for('new_aluguel') }}"> <img class="img_btn"
+                src="/static/cadastrar.png">Cadastrar Novo Aluguel
+            </a></button></div>
+      </div>
+      <br>
+    </div>
+    <div class="terciaria">
+
+      <br><br>
+      <div class="message">{%- for message in get_flashed_messages() %} {{ message }} {%- endfor %}</div>
+
+      <table class="center">
+        <thead>
+          <tr>
+            <th class="hide">
+            <th>Corretor</th>
+            <th>Imóvel</th>
+            <th>Contrato</th>
+            <th>Inquilino</th>
+            <th>Valor</th>
+            <th>Exige calção</th>
+            <th>Aceita Melhorias</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for aluguel in aluguel %}
+          <tr>
+            <td class="hide">
+              <input type="hidden" name="id" enabled="false" value="{{ aluguel.id }}" />
+            </td>
+            {% for corretor in corretor %}
+            {% if aluguel.id_corretor == corretor.id %}
+            <td>{{ corretor.nome }} {{ corretor.sobrenome }}</td>
+            {% endif %}
+            {% endfor %}
+
+            {% for imovel in imovel %}
+            {% if aluguel.id_imovel == imovel.id %}
+            <td>{{ imovel.endereco }}</td>
+            {% endif %}
+            {% endfor %}
+
+            {% for contrato in contrato %}
+            {% if aluguel.id_contrato == contrato.id %}
+            <td>{{ contrato.tipo_contrato }}: {{ contrato.data_inicio }} - {{ contrato.data_inicio }}</td>
+            {% endif %}
+            {% endfor %}
+
+            {% for inquilino in inquilino %}
+            {% if aluguel.id_inquilino == inquilino.id %}
+            <td>{{ inquilino.nome }} {{ inquilino.sobrenome }}</td>
+            {% endif %}
+            {% endfor %}
+
+            <td>{{ aluguel.valor }}</td>
+            <td>{{ aluguel.exige_calcao }}</td>
+            <td>{{ aluguel.aceita_melhorias }}</td>
+            <th>
+              <button class="btn_tabela"><a href="{{ url_for('update_aluguel', id=aluguel.id) }}"><img class="img_btn"
+                    src="/static/editar.png"></a></button>
+            </th>
+            <th>
+              <button class="btn_tabela"><a href="{{ url_for('aluguel_delete', id=aluguel.id) }}"><img class="img_btn"
+                    src="/static/excluir.png"></a></button>
+            </th>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br /><br />
+    </div>
+    <div class="pg_inicial">
+      <button class="bt_pg_inicial"><a href="{{ url_for('index') }}"><img class="img_btn" src="/static/home_pq.png">
+          Voltar para a página Inicial</a></button>
+    </div>
+  </div>
+</body>
+
+</html>

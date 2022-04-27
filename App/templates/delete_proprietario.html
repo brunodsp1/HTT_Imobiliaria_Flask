@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+  <br />
+  <br />
+  <div class="principal_del">
+    <br />
+    <div class="cabecalho">
+      <div class="titulo">Exclusão de Proprietario</div>
+    </div>
+    <hr /> {%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {%- endfor %}
+    <div class="form">
+      <form class="excluir" action="" method="POST">
+        <input type="hidden" name="id" value="{{ proprietario.id }}" /><br /> Nome: {{ proprietario.nome }}<br />
+        Sobrenome: {{ proprietario.sobrenome }}<br /> Endereço: {{ proprietario.endereco }}<br /> CPF:
+        {{ proprietario.cpf }}<br /> Data
+        Nascimento: {{ proprietario.data_nascimento }}<br /> Telefone: {{ proprietario.telefone }}<br /><br />
+        <input class="inserir" type="submit" value="Excluir" />
+      </form>
+    </div><br /> <br />
+  </div>
+  </div>
+  <div class="pg_delete">
+    <button class="bt_pg_inicial">
+      <a href="{{ url_for('show_all_proprietarios') }}"><img class="img_btn" src="/static/return_pq.png"> Voltar
+        para Lista</a>
+    </button></div>
+</body>
+
+</html>

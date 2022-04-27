@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+    <br />
+    <br />
+    <div class="principal_del">
+        <br />
+        <div class="cabecalho">
+            <div class="titulo">Exclusão de Imóvel</div>
+        </div>
+        <hr /> {%- for category, message in get_flashed_messages(with_categories = true) %}
+        <div class="alert alert-danger">{{ message }}</div>
+        {%- endfor %}
+        <div class="form">
+            <form class="excluir" action="" method="POST">
+                <input type="hidden" name="id" value="{{ imovel.id }}" /><br /> ID do Proprietário:
+                {{ imovel.id_proprietario }}<br /> Tipo de imóvel: {{ imovel.tipo_imovel }}<br /> Endereço:
+                {{ imovel.endereco }}<br /> Tem garagem própria? {{ imovel.garagem_propria
+                }} <br /> Metragem: {{ imovel.metragem }}<br /> Número de salas: {{ imovel.num_salas }}<br /> Número de
+                banheiros: {{ imovel.num_banheiros }}<br /> Número de vagas: {{ imovel.num_vagas }}<br /> Número de
+                elevadores: {{ imovel.num_elevadores
+                }} <br /> Tem escada de Incêndio? {{ imovel.escada_incendio }}<br /> Tipo de Recepção:
+                {{ imovel.tipo_recepcao }}<br /><br />
+                <input class="inserir" type="submit" value="Excluir" />
+            </form>
+        </div><br /><br />
+    </div>
+    </div>
+    <div class="pg_delete">
+        <button class="bt_pg_inicial">
+            <a href="{{ url_for('show_all_imoveis') }}"><img class="img_btn" src="/static/return_pq.png"> Voltar
+                para Lista</a>
+        </button></div>
+</body>
+
+</html>

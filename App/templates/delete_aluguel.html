@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+    <br />
+    <br />
+    <div class="principal_del">
+        <br />
+        <div class="cabecalho">
+            <div class="titulo">Exclusão de Aluguéis</div>
+        </div>
+
+        <hr /> {%- for category, message in get_flashed_messages(with_categories = true) %}
+        <div class="alert alert-danger">{{ message }}</div>
+        {%- endfor %}
+        <div class="form">
+            <form class="excluir" action=" " method="POST ">
+                <input type="hidden" name="id " value="{{ aluguel.id }} " /> <br /> Corretor:
+                {{ aluguel.id_corretor }}<br /> Imóvel: {{ aluguel.id_imovel }} <br /> Contrato:
+                {{ aluguel.id_contrato }}<br /> Inquilino: {{ aluguel.id_inquilino }} <br /> Valor:
+                {{ aluguel.valor }}
+                <br /> Exige calção? {{ aluguel.aceita_calcao }} <br /> Aceita melhorias?
+                {{ aluguel.aceita_melhorias }}
+                <br /><br>
+                <input class="inserir" type="submit" value="Excluir " />
+            </form>
+            <br><br>
+        </div>
+    </div>
+    <div class="pg_delete">
+        <button class="bt_pg_inicial">
+            <a href="{{ url_for('show_all_alugueis') }}"><img class="img_btn" src="/static/return_pq.png"> Voltar
+                para Lista</a>
+        </button></div>
+</body>
+
+</html>

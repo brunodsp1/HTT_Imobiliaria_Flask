@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+</head>
+
+<body>
+  <div class="principal" style="width: 95% !important;">
+    <br />
+    <div class="secundaria" style="width: 100% !important;">
+      <div class="cabecalho">
+        <div class="titulo">Imóveis </div>
+        <div class="botao"><button><a class="texto_cadastrar" href="{{ url_for('new_imovel') }}"> <img class="img_btn"
+                src="/static/cadastrar.png">Cadastrar Novo Imóvel
+            </a></button></div>
+      </div>
+      <br>
+    </div>
+    <div class="terciaria" style="width: 100% !important;">
+
+      <br><br>
+      <div class="message">{%- for message in get_flashed_messages() %} {{ message }} {%- endfor %}</div>
+
+      <table class="center">
+        <thead>
+          <tr>
+            <th class="hide"></th>
+            <th>Proprietário</th>
+            <th>Tipo de Imóvel</th>
+            <th>Endereço</th>
+            <th>Tem garagem própria?</th>
+            <th>Metragem</th>
+            <th>Número de salas</th>
+            <th>Número de banheiros</th>
+            <th>Número de vagas</th>
+            <th>Número de elevadores</th>
+            <th>Tem escada de incêndio?</th>
+            <th>Tipo de Recepção</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for imovel in imovel %}
+          <tr>
+            <td class="hide">
+              <input type="hidden" name="id" enabled="false" value="{{ imovel.id }}" />
+            </td>
+            {% for proprietario in proprietario %}
+            {% if imovel.id_proprietario == proprietario.id %}
+            <td>{{ proprietario.nome }} {{ proprietario.sobrenome }}</td>
+            {% endif %}
+            {% endfor %}
+            <!-- <td>{{ imovel.id_proprietario }}</td> -->
+            <td>{{ imovel.tipo_imovel }}</td>
+            <td>{{ imovel.endereco }}</td>
+            <td>{{ imovel.garagem_propria }}</td>
+            <td>{{ imovel.metragem }}</td>
+            <td>{{ imovel.num_salas }}</td>
+            <td>{{ imovel.num_banheiros }}</td>
+            <td>{{ imovel.num_vagas }}</td>
+            <td>{{ imovel.num_elevadores }}</td>
+            <td>{{ imovel.escada_incendio }}</td>
+            <td>{{ imovel.tipo_recepcao }}</td>
+            <th>
+              <button class="btn_tabela"><a href="{{ url_for('update_imovel', id=imovel.id) }}"><img class="img_btn"
+                    src="/static/editar.png"></a></button>
+            </th>
+            <th>
+              <button class="btn_tabela"><a href="{{ url_for('imovel_delete', id=imovel.id) }}"><img class="img_btn"
+                    src="/static/excluir.png"></a></button>
+            </th>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br /><br />
+    </div>
+    <div class="pg_inicial">
+      <button class="bt_pg_inicial"><a href="{{ url_for('index') }}"><img class="img_btn" src="/static/home_pq.png">
+          Voltar para a página Inicial</a></button>
+    </div>
+  </div>
+</body>
+
+</html>
